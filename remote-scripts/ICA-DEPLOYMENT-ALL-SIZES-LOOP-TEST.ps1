@@ -71,28 +71,36 @@ else
     
 	foreach($size in $SupportSizes)
 	{
-		if ($size -imatch 'Promo')
-		{
-		    LogMsg "Skipping $size"
-		}
-		else
-		{
-		    if(($size -match 'DS') -or ($size -match 'GS') -or ($size.Trim().EndsWith("s")) -or ($size.Contains("s_v")))
+        $ResourceSku=Get-AzureRmComputeResourceSku | where {$_.Locations -icontains $Location -and $_.Name -eq $size}
+        if($ResourceSku.Restrictions.ReasonCode -ne "NotAvailableForSubscription")
+        {
+		    if ($size -imatch 'Promo')
 		    {
-                if ( $targetVMsizes.Contains("$size") )
-                {
-                    $XioSizes += $size.Trim()
-                }
+		        LogMsg "Skipping $size"
 		    }
 		    else
 		    {
-                if ( $targetVMsizes.Contains("$size") )
+                if(($size -match 'DS') -or ($size -match 'GS') -or ($size.Trim().EndsWith("s")) -or ($size.Contains("s_v")))
                 {
-                    $StandardSizes += $size.Trim()
+                    if ( $targetVMsizes.Contains("$size") )
+                    {
+                        $XioSizes += $size.Trim()
+                    }
                 }
-		    }
-		}
-	}
+                else
+                {
+                    if ( $targetVMsizes.Contains("$size") )
+                    {
+                        $StandardSizes += $size.Trim()
+                    }
+                }
+            }
+	    }
+        else
+        {
+            LogMsg "Skipping $size"
+        }
+    }
 	if($AccountType -match 'Premium')
 	{
 		$VMSizes = $XioSizes
