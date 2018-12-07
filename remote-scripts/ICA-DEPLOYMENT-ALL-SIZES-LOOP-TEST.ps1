@@ -118,7 +118,7 @@ $DeploymentCount = $NumberOfSizes*1
     try
     {
         $count = 0
-        $allowedFails = 5
+        $allowedFails = 10
         $successCount = 0
         $failCount = 0
         $VMSizeNumber = 0
