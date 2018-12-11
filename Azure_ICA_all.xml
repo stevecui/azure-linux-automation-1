@@ -6768,8 +6768,8 @@
 			<TestFeature></TestFeature>
 			<SubtestValues>CUSTOM,VM,SIZES</SubtestValues>
 			<SupportedExecutionModes>AzureServiceManagement,AzureResourceManager</SupportedExecutionModes>
-            <StandardVMSizes>Standard_E20_v3,Standard_E32_v3,Standard_E64i_v3,Standard_E64_v3,Standard_G1,Standard_G2,Standard_G3,Standard_G4,Standard_G5,Standard_A8,Standard_A9,Standard_A10,Standard_A11,Standard_H8,Standard_H16,Standard_H8m,Standard_H16m,Standard_H16r,Standard_H16mr</StandardVMSizes>
-			<PremiumVMSizes>Standard_F64s_v2</PremiumVMSizes>
+            <StandardVMSizes>Standard_E20_v3</StandardVMSizes>
+			<PremiumVMSizes>Standard_D64s_v3</PremiumVMSizes>
 			<TestID>Reboot_01</TestID>
 		</test>
 
